@@ -11,6 +11,11 @@ the mode BlockParty on the Minecraft network hivemc.com
 We are happy about every help we can get with this project and happily accept
 pull requests.
 
+### Installing
+Download a release from [here](https://github.com/nilsxyz/autodance/releases).
+Then put the jar into a 1.12.2 mods folder and install forge. Ingame you can use
+`P` to activate the mod (can be changed in the settings).
+
 ### Developer
 Main developers:
 - **@Janrupf** 
