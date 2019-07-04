@@ -6,7 +6,7 @@ import net.minecraft.scoreboard.Scoreboard;
 import java.util.function.Predicate;
 
 public class ScoreboardUtil {
-    public static boolean testSidebarDisplays(Scoreboard scoreboard, Predicate<String> tester) {
+    public static boolean testSidebarTitle(Scoreboard scoreboard, Predicate<String> tester) {
         ScoreObjective objective = scoreboard.getObjectiveInDisplaySlot(1);
         if(objective != null) {
             return scoreboard.getScores().stream()

@@ -6,6 +6,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
+import java.util.Objects;
+
 public final class TextUtil {
     private static final String PREFIX = TextFormatting.GRAY + "[" + TextFormatting.RED +
             "AutoDance" + TextFormatting.GRAY + "] " + TextFormatting.RESET;
@@ -16,5 +18,9 @@ public final class TextUtil {
 
     public static String format(String localization, Object... args) {
         return I18n.format(localization, args);
+    }
+
+    public static String getWithoutFormatting(String s) {
+        return s == null ? "" : Objects.requireNonNull(TextFormatting.getTextWithoutFormattingCodes(s));
     }
 }

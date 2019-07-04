@@ -46,7 +46,7 @@ public class AutodanceMod {
         return autodanceEnabled;
     }
 
-    public boolean isServerEnabled() {
+    public boolean isAutojoinEnabled() {
         return autojoinEnabled;
     }
 

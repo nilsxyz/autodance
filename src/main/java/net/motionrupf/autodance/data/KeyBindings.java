@@ -13,5 +13,6 @@ public class KeyBindings {
 
     public static void register() {
         ClientRegistry.registerKeyBinding(TOGGLE_MOD);
+        ClientRegistry.registerKeyBinding(TOGGLE_AUTOJOIN);
     }
 }

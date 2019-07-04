@@ -24,6 +24,8 @@ public class RenderGameOverlayListener {
 
         fontRenderer.drawString("Status of AutoDance: " + mod.isAutodanceEnabled(), 10, 10 , Color.WHITE.getRGB());
 
+        fontRenderer.drawString("Status of ServerJoin: " + mod.isAutojoinEnabled(), 10, 20 , Color.WHITE.getRGB());
+
         if(mod.isAutodanceEnabled())  {
             int yOffset = 20;
             if(mod.getAimedColor() != null) {

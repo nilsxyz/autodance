@@ -7,5 +7,5 @@ message.autodance.status.enabled=enabled
 message.autodance.status.disabled=disabled
 
 message.autodance.autojoin=ServerJoin is now %s
-message.autodance.autojoin.enabled=enable
+message.autodance.autojoin.enabled=enabled
 message.autodance.autojoin.disabled=disabled

@@ -29,7 +29,7 @@ public class KeyBindingListener {
         if(KeyBindings.TOGGLE_AUTOJOIN.isPressed()) {
             mod.toggleAutojoinEnabled();
             Minecraft.getMinecraft().player.sendMessage(TextUtil.formatComponent("message.autodance.autojoin",
-                    mod.isServerEnabled() ? TextUtil.format("message.autodance.autojoin.enabled")
+                    mod.isAutojoinEnabled() ? TextUtil.format("message.autodance.autojoin.enabled")
                             : TextUtil.format("message.autodance.autojoin.disabled")));
         }
     }

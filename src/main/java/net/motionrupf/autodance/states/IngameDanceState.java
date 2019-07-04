@@ -1,7 +1,5 @@
 package net.motionrupf.autodance.states;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockStainedHardenedClay;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -12,37 +10,36 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.motionrupf.autodance.AutodanceMod;
 import net.motionrupf.autodance.util.MathUtil;
 import net.motionrupf.autodance.util.ScoreboardUtil;
+import net.motionrupf.autodance.util.TextUtil;
 import net.motionrupf.autodance.util.WorldUtil;
 
-import java.util.Objects;
 import java.util.Random;
 
-public class IngameState {
+public class IngameDanceState {
     private final AutodanceMod mod;
     private final Random random;
 
     private float oldPitch = Float.MAX_VALUE;
     private BlockPos randomPos;
 
-    public IngameState(AutodanceMod mod, Random random) {
+    public IngameDanceState(AutodanceMod mod, Random random) {
         this.mod = mod;
         this.random = random;
     }
 
     public boolean shouldUpdate(TickEvent.PlayerTickEvent event) {
         return mod.isAutodanceEnabled() && event.player == Minecraft.getMinecraft().player &&
-                ScoreboardUtil.testSidebarDisplays(event.player.getWorldScoreboard(),
-                        s -> Objects.requireNonNull(TextFormatting.getTextWithoutFormattingCodes(s))
-                                .equalsIgnoreCase("BlockParty"));
+                ScoreboardUtil.testSidebarTitle(event.player.getWorldScoreboard(),
+                        s -> TextUtil.getWithoutFormatting(s).equalsIgnoreCase("BlockParty"));
     }
 
     public void update(EntityPlayerSP player) {
         ItemStack stack = player.inventory.getStackInSlot(4);
+
         GameSettings settings = Minecraft.getMinecraft().gameSettings;
 
         int forwardBinding = settings.keyBindForward.getKeyCode();
