@@ -15,7 +15,8 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = "autodance")
 public class AutodanceMod {
     private Logger logger;
-    private boolean enabled;
+    private boolean autodanceEnabled;
+    private boolean autojoinEnabled;
 
     private EnumDyeColor aimedColor;
     private BlockPos aimedPos;
@@ -33,12 +34,20 @@ public class AutodanceMod {
         logger.info("AutoDance initialized!");
     }
 
-    public void toggleEnabled() {
-        enabled = !enabled;
+    public void toggleAutodanceEnabled() {
+        autodanceEnabled = !autodanceEnabled;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public void toggleAutojoinEnabled() {
+        autojoinEnabled = !autojoinEnabled;
+    }
+
+    public boolean isAutodanceEnabled() {
+        return autodanceEnabled;
+    }
+
+    public boolean isServerEnabled() {
+        return autojoinEnabled;
     }
 
     public void setAimedColor(EnumDyeColor aimedColor) {

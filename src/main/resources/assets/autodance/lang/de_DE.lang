@@ -1,6 +1,11 @@
 keybind.autodance.category=AutoDance
 keybind.autodance.toggle_mod=AutoDance umschalten
+keybind.autodance.toggle_server=ServerJoin umschalten
 
 message.autodance.status=Hilfe ist nun %s
 message.autodance.status.enabled=aktiviert
 message.autodance.status.disabled=deaktiviert
+
+message.autodance.autojoin=ServerJoin ist nun %s
+message.autodance.autojoin.enabled=aktiviert
+message.autodance.autojoin.disabled=deaktiviert

@@ -9,7 +9,7 @@ public class PlayerNameFormat {
     @SubscribeEvent
     public void playerFormat(PlayerEvent.NameFormat event) {
         if(event.getUsername().equals("Janrupf") || event.getUsername().equals("MotionLife")) {
-            event.setDisplayname(event.getUsername() + " " + TextFormatting.RESET + TextFormatting.GRAY + "[" + TextFormatting.RED + TextFormatting.BOLD + "DEVELOPER" + TextFormatting.RESET + TextFormatting.GRAY + "]");
+            event.setDisplayname(event.getUsername() + " " + TextFormatting.RESET + TextFormatting.GRAY + "[" + TextFormatting.RED + TextFormatting.BOLD + "MAIN DEVELOPER" + TextFormatting.RESET + TextFormatting.GRAY + "]");
         }
     }
 }

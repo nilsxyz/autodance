@@ -22,9 +22,9 @@ public class RenderGameOverlayListener {
     public void onRenderGameOverlay(RenderGameOverlayEvent.Text event) {
         FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
 
-        fontRenderer.drawString("Status of AutoDance: " + mod.isEnabled(), 10, 10 , Color.WHITE.getRGB());
+        fontRenderer.drawString("Status of AutoDance: " + mod.isAutodanceEnabled(), 10, 10 , Color.WHITE.getRGB());
 
-        if(mod.isEnabled())  {
+        if(mod.isAutodanceEnabled())  {
             int yOffset = 20;
             if(mod.getAimedColor() != null) {
                 fontRenderer.drawString("Aimed color: " + mod.getAimedColor().getName(), 10, yOffset,
