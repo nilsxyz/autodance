@@ -43,7 +43,6 @@ public class PlayerTickListener {
 
             int forwardBinding = settings.keyBindForward.getKeyCode();
             int sprintBinding = settings.keyBindSprint.getKeyCode();
-            int jumpBinding = settings.keyBindJump.getKeyCode();
 
             if(stack.getItem() instanceof ItemBlock &&
                     ((ItemBlock) stack.getItem()).getBlock() instanceof BlockStainedHardenedClay) {
@@ -61,12 +60,9 @@ public class PlayerTickListener {
                         player.rotationYaw = findRequiredYaw(target, player);
                         KeyBinding.setKeyBindState(forwardBinding, true);
                         KeyBinding.setKeyBindState(sprintBinding, true);
-                        KeyBinding.setKeyBindState(jumpBinding, target.distanceSq(player.getPosition()) > 3);
                     } else {
                         KeyBinding.setKeyBindState(forwardBinding, false);
                         KeyBinding.setKeyBindState(sprintBinding, false);
-                        KeyBinding.setKeyBindState(jumpBinding, random.nextInt(20) == 0
-                                && !airNear(player.getEntityWorld(), player.getPosition().down()));
                     }
 
                     randomPos = null;
@@ -89,14 +85,9 @@ public class PlayerTickListener {
                         player.rotationYaw = newYaw;
                         KeyBinding.setKeyBindState(forwardBinding, true);
                         KeyBinding.setKeyBindState(sprintBinding, true);
-                        KeyBinding.setKeyBindState(jumpBinding,
-                                randomPos.distanceSq(player.getPosition()) > 3 &&
-                                        random.nextInt(20) == 0);
                     } else {
                         KeyBinding.setKeyBindState(forwardBinding, false);
                         KeyBinding.setKeyBindState(sprintBinding, false);
-                        KeyBinding.setKeyBindState(jumpBinding, random.nextInt(20) == 0
-                            && !airNear(player.getEntityWorld(), player.getPosition().down()));
                         randomPos = null;
                     }
                 } else {
@@ -233,42 +224,6 @@ public class PlayerTickListener {
         } else {
             return positions.get(r);
         }
-    }
-
-    private boolean airNear(World world, BlockPos from) {
-        for(int xOffset = 0; xOffset < 3; xOffset++) {
-            for(int yOffset = 0; yOffset < 3; yOffset++) {
-                if(world.getBlockState(from.add(xOffset, 0, yOffset)).getBlock() == Blocks.AIR) {
-                    return true;
-                }
-            }
-        }
-
-        for(int xOffset = 0; xOffset > -3; xOffset--) {
-            for(int yOffset = 0; yOffset < 3; yOffset++) {
-                if(world.getBlockState(from.add(xOffset, 0, yOffset)).getBlock() == Blocks.AIR) {
-                    return true;
-                }
-            }
-        }
-
-        for(int xOffset = 0; xOffset < 3; xOffset++) {
-            for(int yOffset = 0; yOffset > -3; yOffset--) {
-                if(world.getBlockState(from.add(xOffset, 0, yOffset)).getBlock() == Blocks.AIR) {
-                    return true;
-                }
-            }
-        }
-
-        for(int xOffset = 0; xOffset > -3; xOffset--) {
-            for(int yOffset = 0; yOffset > -3; yOffset--) {
-                if(world.getBlockState(from.add(xOffset, 0, yOffset)).getBlock() == Blocks.AIR) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     private float findRequiredYaw(BlockPos pos, EntityPlayerSP player) {
