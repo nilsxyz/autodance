@@ -1,0 +1,6 @@
+keybind.autodance.category=AutoDance
+keybind.autodance.toggle_mod=AutoDance umschalten
+
+message.autodance.status=Hilfe ist nun %s
+message.autodance.status.enabled=aktiviert
+message.autodance.status.disabled=deaktiviert

@@ -1,0 +1,9 @@
+[{
+  "modid": "autodance",
+  "name": "AutoDance",
+  "description": "Automatically search a block on hivemc.com",
+  "vesion": "1.0.0",
+  "mcversion": "1.12.2",
+  "authorList": ["Janrupf", "MotionLife"],
+  "credits": "TODO"
+}]

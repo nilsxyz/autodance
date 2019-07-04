@@ -1,0 +1,6 @@
+keybind.autodance.category=AutoDance
+keybind.autodance.toggle_mod=Toggle AutoDance
+
+message.autodance.status=Helper is now %s
+message.autodance.status.enabled=enabled
+message.autodance.status.disabled=disabled

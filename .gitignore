@@ -1,0 +1,7 @@
+.flooignore
+.floo
+.gradle/
+.idea/
+build/
+gradle/
+run/
