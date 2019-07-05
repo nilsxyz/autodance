@@ -44,7 +44,10 @@ public class IngameDanceState {
 
         int forwardBinding = settings.keyBindForward.getKeyCode();
         int sprintBinding = settings.keyBindSprint.getKeyCode();
-        int attackKeybinding = settings.keyBindAttack.getKeyCode();
+        int attackBinding = settings.keyBindAttack.getKeyCode();
+        int jumpBinding = settings.keyBindJump.getKeyCode();
+
+        BlockPos fixedPlayerPos = WorldUtil.getNextSolidOrOriginalPosOffset(player, 2);
 
         if(stack.getItem() instanceof ItemBlock &&
                 ((ItemBlock) stack.getItem()).getBlock() instanceof BlockStainedHardenedClay) {
@@ -54,11 +57,12 @@ public class IngameDanceState {
             IBlockState state = block.getStateFromMeta(itemBlock.getMetadata(stack));
             mod.setAimedColor(state.getValue(BlockStainedHardenedClay.COLOR));
 
-            BlockPos target = WorldUtil.findNext(player.getEntityWorld(), player.getPosition().down(), state);
+            BlockPos target = WorldUtil.findNext(player.getEntityWorld(), fixedPlayerPos, state);
+
             mod.setAimedPos(target);
 
             if(target != null) {
-                if(!target.equals(player.getPosition().down())) {
+                if(!target.equals(fixedPlayerPos)) {
                     player.rotationYaw = MathUtil.findRequiredYaw(target, player);
                     KeyBinding.setKeyBindState(forwardBinding, true);
                     KeyBinding.setKeyBindState(sprintBinding, true);
@@ -67,13 +71,15 @@ public class IngameDanceState {
                     KeyBinding.setKeyBindState(sprintBinding, false);
                 }
 
+                KeyBinding.setKeyBindState(jumpBinding, fixedPlayerPos.distanceSq(target) > 3);
+
                 randomPos = null;
             }
         } else {
             mod.setAimedColor(null);
             mod.setAimedPos(null);
 
-            BlockPos beaconPos = WorldUtil.findNext(player.getEntityWorld(), player.getPosition(),
+            BlockPos beaconPos = WorldUtil.findNext(player.getEntityWorld(), fixedPlayerPos.up(),
                     Blocks.BEACON.getDefaultState());
             if(beaconPos != null) {
                 if(oldPitch == Float.MAX_VALUE) {
@@ -87,9 +93,9 @@ public class IngameDanceState {
                 KeyBinding.setKeyBindState(sprintBinding, true);
 
                 if(beaconPos.distanceSq(player.getPosition()) < 3) {
-                    KeyBinding.setKeyBindState(attackKeybinding, true);
+                    KeyBinding.setKeyBindState(attackBinding, true);
                 } else {
-                    KeyBinding.setKeyBindState(attackKeybinding, false);
+                    KeyBinding.setKeyBindState(attackBinding, false);
                 }
 
                 return;
@@ -100,11 +106,12 @@ public class IngameDanceState {
                 oldPitch = Float.MAX_VALUE;
             }
 
-            KeyBinding.setKeyBindState(attackKeybinding, false);
+            KeyBinding.setKeyBindState(attackBinding, false);
+            KeyBinding.setKeyBindState(jumpBinding, random.nextInt(5) == 0);
 
-            if(randomPos == null || randomPos.equals(player.getPosition())) {
+            if(randomPos == null || randomPos.equals(fixedPlayerPos)) {
                 BlockPos newRandomPos = WorldUtil.findRandom(
-                        player.getEntityWorld(), player.getPosition().down(),random);
+                        player.getEntityWorld(), fixedPlayerPos, random, true);
                 if(newRandomPos != null) {
                     randomPos = newRandomPos;
                 }
