@@ -45,7 +45,6 @@ public class IngameDanceState {
         int forwardBinding = settings.keyBindForward.getKeyCode();
         int sprintBinding = settings.keyBindSprint.getKeyCode();
         int attackBinding = settings.keyBindAttack.getKeyCode();
-        int jumpBinding = settings.keyBindJump.getKeyCode();
 
         BlockPos fixedPlayerPos = WorldUtil.getNextSolidOrOriginalPosOffset(player, 2);
 
@@ -70,8 +69,6 @@ public class IngameDanceState {
                     KeyBinding.setKeyBindState(forwardBinding, false);
                     KeyBinding.setKeyBindState(sprintBinding, false);
                 }
-
-                KeyBinding.setKeyBindState(jumpBinding, fixedPlayerPos.distanceSq(target) > 3);
 
                 randomPos = null;
             }
@@ -107,7 +104,6 @@ public class IngameDanceState {
             }
 
             KeyBinding.setKeyBindState(attackBinding, false);
-            KeyBinding.setKeyBindState(jumpBinding, random.nextInt(5) == 0);
 
             if(randomPos == null || randomPos.equals(fixedPlayerPos)) {
                 BlockPos newRandomPos = WorldUtil.findRandom(
